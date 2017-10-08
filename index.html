@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0">
+		<title>my Computer Desk</title>
+		<style>
+			*{margin:0;padding:0;}
+			html{font-size:12px;width:100%;height:100%;}
+			body{
+				width:100%;
+				height:100%;
+				background:url('images/indexBG1.jpg') no-repeat center/cover;
+				overflow:hidden;
+				font-family:'microsoft yahei';
+			}
+
+			ul li {
+				list-style:none;
+			}	
+			ul#desk li{
+				margin:5em 3em;
+			}
+			ul#desk li img{
+				width:50px;
+				height:50px;
+				cursor:pointer;
+			}
+			/*ul#desk li img:nth-child(3){
+				width:103px;
+				height:100px;
+			}
+			/*
+				css3选择器怎么选择第3个，第6个，第9个，第12个……元素？？
+				li:nth-child(3n)
+				 {
+					background:#ff0000;
+				 }
+			*/
+			ul#desk li img:hover{
+				transform:scale(1.3);
+			}
+			#footer{
+				width:100%;
+				height:3em;
+				background:rgba(0,0,0,1);
+				position:fixed;
+				bottom:0;
+			}
+			#footer a{
+				display:inline-block;
+				width:32px;
+				height:30px;
+				background:url('images/startMenu.jpg') no-repeat 0 2px;
+				margin:.3em 3em 0 0;
+			}
+			#footer a:hover{
+				background-position:-37px 2px;
+			}
+			
+			#footer input{
+				position:absolute;
+				top:.3em;
+				width:25em;
+				margin:0 2em;
+				padding:0 .5em;
+				height:80%;
+				border:0;
+			}
+			#footer span{
+				position:absolute;
+				right:1em;
+				top:.3em;
+				width:16em;
+				height:80%;
+				line-height:2.6em;
+				/*background:#FAA;*/
+				color:#FFF;	
+			}
+
+			#contentResume{
+				display:none;
+				position:absolute;
+				top:0;
+				right:0;
+				bottom:0;
+				left:0;
+				margin:auto;
+				width:85%;
+				height:85%;
+				background:hsla(255,100%,100%,.7) border-box;
+				padding-top:3em;
+				box-sizing:border-box;
+				border-bottom-left-radius:.8em;
+				border-bottom-right-radius:.8em;
+			}
+			#contentResume ul{
+				position:absolute;
+				top:0;
+				width:100%;
+				height:3em;
+				background:#000;
+			}
+			#contentResume ul li{
+				display:inline-block;
+				width:2em;
+				height:100%;
+				float:right;
+				margin:0 1em;
+				padding:0;
+				color:#FFF;
+				line-height:3em;
+				text-align:center;
+				cursor:pointer;
+			}
+			#contentResume iframe{
+				width:100%;
+				height:100%;
+				border:none;
+				border-top:solid 1px hsla(0,0%,100%,.8);
+			}
+
+			.tips{
+				position:absolute;
+				bottom:5em;
+				border:1px solid #FAA;
+				background-color:#000;
+				background-color:rgba(0,0,0,.5);
+				width:25em;
+				color:#FFF;
+				text-align:center;
+				padding:2em;
+				box-sizing:border-box;
+				right:-25em;
+				transition:all .4s;
+				opacity:1;
+				transition-delay:2s;
+			}
+
+			#menu{
+				display:none;
+				width:200px;
+				height:250px;
+				background:#FFF;
+				position:absolute;
+				left:400px;
+				top:100px;
+				box-shadow:0 0 5px 5px #EEE;
+			}
+			#menu ul li{
+				width:200px;
+				height:35px;
+				border-bottom:1px solid #888;
+				font-family:'microsoft yahei';
+				line-height:35px;
+			}
+
+			#menu ul li img{
+				vertical-align:middle;
+				margin:0 10px 0 20px;
+			}
+
+			#menu ul li.active{
+				background:#09B;
+			}
+			
+			#wall{
+				display:none;
+				width:750px;
+				height:360px;
+				background:rgba(0,0,0,.3);
+				position:absolute;
+				top:100px;
+				left:300px;
+				border-radius:5px;
+			}
+			
+			#wall .title{
+				width:100%;
+				height:46px;
+				background:#000;
+				font-size:18px;
+				font-family:'microsoft yahei';
+				line-height:46px;
+				color:#FFF;
+				text-indent:10px;
+				/*cursor:*/
+			}
+
+			#wall .title img{
+				float:right;
+				/*vertical-align:middle;*/
+				margin-right:10px;
+				margin-top:10px;
+			}
+
+			#wall ul li{
+				width:200px;
+				height:125px;
+				border:5px solid #FFF;
+				float:left;
+				margin:10px 20px;
+			}
+
+			#wall ul li img{
+				width:100%;
+				height:100%;
+			}
+
+			#wall ul li img:hover{
+				cursor:pointer;
+			}
+		</style>
+	</head>
+	<body>
+		<!--桌面图标开始-->
+		<ul id="desk">
+				<li class="computer">
+					<img src="images/nav-BG1.png" width="103px" height="100px" alt="bg" >
+					<br>
+					<span>我的电脑</span>
+				</li>
+				<li class="folder">
+					<img src="images/nav-BG2.png" width="103px" height="100px" alt="bg" >
+					<br>
+					<span>新文件夹</span>
+				</li>
+				<li class="resume">
+					<img src="images/nav-BG3.png" width="103px" height="100px" alt="bg" >
+					<br>
+					<span>我的简历</span>
+					<div id="contentResume">
+						<ul id="frameNav">
+							<li class="close">×</li>
+							<li class="min">-</li>
+							<li class="max">❏</li>
+							
+						</ul>
+						<iframe src="html/resume.html" name="ifm"></iframe>
+					</div>
+				</li>
+				<li class="music">
+					<img src="images/nav-BG4.png" width="103px" height="100px" alt="bg" >
+					<br>
+					<span>我的音乐</span>
+				</li>
+				<li class="memories">
+					<img src="images/nav-BG5.png" width="103px" height="100px" alt="bg" >
+					<br>
+					<span>我的笔记</span>
+				</li>
+		</ul>
+		<!--桌面图标结束-->
+		
+		<!--任务栏开始-->
+		<div id="footer">
+			<a></a><input placeholder="       Search the web and window"><span ></span>
+		</div>
+		<!--任务栏结束-->
+
+		<!--全屏提示框-->
+		<div class="tips" >
+			按F11全屏浏览<br>(Press F11 to fullscreen)
+		</div>
+		<audio id="notice">
+			<source src="media/notice.mp3">
+			<source src="media/notice.ogg">
+		</audio>
+		<!--全屏提示框-->
+		
+		<!--右键菜单开始-->
+		<div  id="menu">
+			<ul>
+				<li class="active"><img src="images/ico1.jpg" />添加应用</li>
+				<li><img src="images/ico2.jpg" />排序方式</li>
+				<li><img src="images/ico3.jpg" />添加笔记</li>
+				<li><img src="images/ico4.jpg" />刷新</li>
+				<li><img src="images/ico5.jpg" />上传资料</li>
+				<li><img src="images/ico6.jpg" />更换背景</li>
+				<li><img src="images/ico7.jpg" />注销</li>
+			</ul>
+		</div>
+		<!--右键菜单结束-->
+		
+		<!--更换背景墙开始-->
+		<div id="wall">
+			<div class="title">桌面背景墙<img src="images/close.png" /></div>
+			<ul>
+				<li><img src="images/indexBg1.jpg" alt=""></li>
+				<li><img src="images/indexBg2.jpg" alt=""></li>
+				<li><img src="images/indexBg3.jpg" alt=""></li>
+				<li><img src="images/indexBg4.jpg" alt=""></li>
+				<li><img src="images/indexBg5.jpg" alt=""></li>
+				<li><img src="images/indexBg6.jpg" alt=""></li>
+			</ul>
+		</div>
+		<!--更换背景墙结束-->
+
+
+		<!--页面脚本 不 - - 去 详细 注释 了 -->
+		<script>
+				
+			function $$(id){return document.getElementById(id) || id;}
+			window.addEventListener('load',initial,false);
+
+
+			function initial(){
+				var startTime = new Date();
+				var desk = $$('desk');
+				var resumeClick = desk.getElementsByClassName('resume')[0].getElementsByTagName('img')[0];
+				var ifrResumeNav = $$('frameNav');
+				var resumeClose = ifrResumeNav.getElementsByClassName('close')[0];
+				var menuLis = $$('menu').querySelectorAll('li');
+				var closeWallBtn = $$('wall').querySelector('img');
+				var wallImgs = $$('wall').querySelectorAll('img');
+				var moveDivTitle = $$('wall').querySelector('div');
+				var moveDiv = moveDivTitle.parentNode;
+				//var isOver = false;
+				//open and close resume
+				resumeClick.addEventListener('click',openResume,false);
+				resumeClose.addEventListener('click',closeResume,false);
+				//document.addEventListener('contextmenu',myRight,false);
+				document.addEventListener('mousedown',rightButton,false);
+				document.addEventListener('click',closeMenu,false);
+				for(var i=0,len=menuLis.length;i<len;i++){
+					menuLis[i].addEventListener('mousemove',myActive,false);
+					menuLis[i].addEventListener('click',myClick,false);
+				}
+
+				for(var i = 1,len=wallImgs.length;i<len;i++){
+					wallImgs[i].addEventListener('click',setBg,false);
+				}
+
+				closeWallBtn.addEventListener('click',closeWall,false);
+				moveDivTitle.addEventListener('mousedown',startMove,false);
+				displayTime();
+				//
+				function closeResume(e){
+					e.stopPropagation();
+					//e.cancelBubble=true;//e.stopPropagation()
+					var contentResume  = $$('contentResume');
+					contentResume.style.display="none";
+					window.frames["ifm"].document.getElementsByTagName('body')[0].className="";
+					console.log(22);
+					console.log(window.frames['ifm'].document.getElementById('cover').style.height);
+					window.frames['ifm'].document.getElementById('cover').style.height='100%';//style.height
+					//var bodyResume = document.getElementsByTagName('iframe')[0].getElementsByTagName('body')[0];
+					//console.log(bodyResume);
+					//bodyResume.className = "";
+				}
+				
+				function openResume(e){
+					var contentResume  = $$('contentResume');
+					console.log(1);
+					contentResume.style.display="block";
+				}
+				
+				var parentDom = document.getElementById('footer');
+				var span = parentDom.getElementsByTagName('span')[0];
+				var notice = document.getElementById('notice');
+				document.getElementsByClassName('tips')[0].style.right='5em';
+				function displayTime(){
+					setInterval(function(){
+						currentTime();
+					},1000);
+					
+					//24小时为你们开通人生热线
+					function currentTime(){
+						var time = new Date();
+						//时间格式化处理
+						Date.prototype.format=function(datestr){
+							var year = this.getFullYear();
+							var month = (this.getMonth()+1)<=9?"0"+(this.getMonth()+1):this.getMonth()+1;
+							var day = this.getDate()<=9?"0"+this.getDate():this.getDate();
+							var hour = this.getHours()<=9?"0"+this.getHours():this.getHours();
+							var minute = this.getMinutes()<=9?"0"+this.getMinutes():this.getMinutes();
+							var s = this.getSeconds()<=9?"0"+this.getSeconds():this.getSeconds();
+							
+							datestr=datestr.replace("YYYY",year);
+							datestr=datestr.replace("MM",month);
+							datestr=datestr.replace("DD",day);
+							datestr=datestr.replace("hh",hour);
+							datestr=datestr.replace("mm",minute);
+							datestr=datestr.replace("ss",s);
+							return "(_独愛你 : "+datestr;
+						}
+						
+						span.innerHTML = time.format("YYYY/MM/DD hh:mm:ss");
+						if(time-startTime >2000&&time-startTime<3000){
+							console.log('notice');
+							notice.play();
+						}
+						if(time-startTime >4000&&time-startTime<5000){
+							document.getElementsByClassName('tips')[0].style.opacity=0;
+						}
+					}
+				}
+
+				//右键功能  2016/03/08  你胖胖的，又肿了么，其实我是想说，你棒棒的，又怎么了，不高兴
+				function rightButton(e){
+					document.oncontextmenu = function(){return false;}
+					if(e.which==3){
+						var el = $$('menu');
+						el.style.left = e.clientX+"px";
+						el.style.top = e.clientY+"px";
+						el.style.display='block';
+					}
+				}
+				
+				function closeMenu(){
+					$$('menu').style.display="none";
+					//document.title=menuLis.length;
+				}
+				
+				function myActive(){
+					for(var i=0,len=menuLis.length;i<len;i++){
+						menuLis[i].style.background="#FFF";
+					}
+					this.style.background="#09B";
+				}
+
+				function myClick(e){
+					//alert(this.innerText);
+					if(this.innerText=="更换背景"){
+						var el = $$("wall");
+						el.style.left = e.clientX+"px";
+						el.style.top = e.clientY+"px";
+						el.style.display="block";
+					}
+				}
+
+				function closeWall(){
+					$$('wall').style.display="none";
+				}
+
+				function setBg(){
+					var str = this.src ;
+					var num = str.charAt(str.length-5);
+					var spans = $$('desk').querySelectorAll('span');
+					if(num == 4 || num == 5){
+						for(var i=0,len=spans.length;i<len;i++){
+							spans[i].style.color = "#FFF";
+						}
+					}
+					if(num == 1 || num == 3){
+						for(var i=0,len=spans.length;i<len;i++){
+							spans[i].style.color = "#000";
+						}
+					}
+					document.querySelector('body').style.background='url('+this.src+') no-repeat center/cover';
+				}
+				
+			//背景墙拖动加入...
+				function startMove(e){
+					var x = e.clientX;
+					var y = e.clientY;
+					var isOver = true;
+					moveDivTitle.style.cursor = 'pointer';
+					l = parseInt(moveDiv.offsetLeft);//距离浏览器left位置
+					t = parseInt(moveDiv.offsetTop);//top
+					document.onmousemove = function(e){
+						if(isOver){
+							var newLeft = l + e.clientX - x;
+							var newTop = t + e.clientY - y;
+							moveDiv.style.left = newLeft+"px";
+							moveDiv.style.top = newTop+"px";
+						}
+					}
+
+					document.onmouseup = function(e){
+						moveDivTitle.style.cursor = 'default';
+						if(isOver){
+							isOver = false;
+						}
+					}
+				}
+
+				
+			}
+			
+
+		</script>
+	</body>
+</html>
